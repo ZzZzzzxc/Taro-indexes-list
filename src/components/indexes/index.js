@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { ScrollView, View } from "@tarojs/components";
+import { ScrollView, View, Image, Text } from "@tarojs/components";
 import Taro, { Component } from "@tarojs/taro";
 import { delay, delayQuerySelector } from "./utils";
 import { AtToast } from "taro-ui";
-import { ButtonItem } from "../button/index";
-import { postcss } from '../../utils/style'
+import ButtonItem from "../button/index";
+import { postcss } from "../../utils/style";
 import "./index.scss";
 
 const ENV = Taro.getEnv();
@@ -273,8 +273,7 @@ export default class Indexes extends Component {
                 {isCommit ? (
                   <View
                     className={[
-                      _list[index] &&
-                      _list[index].items[childIndex].isSelect
+                      _list[index] && _list[index].items[childIndex].isSelect
                         ? "indexes__list-item__selector__active"
                         : "indexes__list-item__selector",
                     ]}
@@ -334,18 +333,17 @@ export default class Indexes extends Component {
             {this.props.children}
           </View>
           {indexesList}
-          
         </ScrollView>
         {isCommit ? (
-            <View className="indexes__commit">
-              <ButtonItem
-                type="primary"
-                text="提交"
-                onClick={this.handleCommit.bind(this)}
-                compStyle={commitBtnStyle}
-              />
-            </View>
-          ) : null}
+          <View className="indexes__commit">
+            <ButtonItem
+              type="primary"
+              text="提交"
+              onClick={this.handleCommit.bind(this)}
+              compStyle={commitBtnStyle}
+            />
+          </View>
+        ) : null}
       </View>
     );
   }
