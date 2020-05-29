@@ -5,7 +5,6 @@ import Taro, { Component } from "@tarojs/taro";
 import { delay, delayQuerySelector } from "./utils";
 import { AtToast } from "taro-ui";
 import ButtonItem from "../button/index";
-import { postcss } from "../../utils/style";
 import "./index.scss";
 
 const ENV = Taro.getEnv();
@@ -78,6 +77,7 @@ export default class Indexes extends Component {
     const { topKey, list } = this.props;
     const _tipText = idx === 0 ? topKey : list[idx - 1].key;
 
+    // 兼容H5
     if (ENV === Taro.ENV_TYPE.WEB) {
       delayQuerySelector(this, ".indexes", 0).then((rect) => {
         const targetOffsetTop = this.listRef.childNodes[idx].offsetTop;
@@ -126,7 +126,7 @@ export default class Indexes extends Component {
       }
     );
 
-    // 微信小程序震动
+    // 微信小程序震动 
     if (isVibrate) {
       Taro.vibrateShort();
     }
@@ -141,6 +141,7 @@ export default class Indexes extends Component {
         _list: list,
       });
     });
+    
     delayQuerySelector(this, ".indexes__menu").then((rect) => {
       const len = this.props.list.length;
       this.menuHeight = rect[0].height;
